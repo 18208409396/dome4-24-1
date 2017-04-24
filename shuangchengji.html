@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+			.tu{
+				width: 308px;
+                height: 208px;
+				padding: 4px;
+				margin: auto;
+				border: 1px solid gray;
+				overflow: hidden;
+				position: relative;
+			}
+			.tutu{
+				width: 305px;
+                height: 190px;
+                position: absolute;
+                transition: 1s;
+                top: 4px;
+			}
+			.btn{
+				width: 300px;
+				height: 35px;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tu">
+			<div class="tutu">
+			<img src="img/tu_1.jpg" />
+			<img src="img/tu_2.jpg"/>
+			<img src="img/2013040663217689.jpg" />
+			</div>
+		</div>
+		<div class="btn">
+			<button onmouseover="over(0)" onmouseout="out(0)">第一张</button>
+			<button onmouseover="over(1)" onmouseout="out(0)">第二张</button>
+			<button onmouseover="over(2)" onmouseout="out(0)">第三张</button>
+		</div>
+	</body>
+	<script>
+		var tu = document.getElementsByClassName("tutu")[0];
+		
+		var index=0;
+		//定义一个索引数组
+		var arr=["4px","-207px","-419px"]
+		//
+		var flag=true;
+		//定义定时器对象
+		var times;
+		times = setInterval(fun,2000);
+		function fun(){
+			tu.style.top = arr[index];
+			if(flag){
+				down();
+			}
+			else{
+				up();
+			}
+		}
+		function down(){
+			index++;
+			if(index == 2){
+				flag = false;
+			}
+		}
+		function up(){
+			index--;
+			if(index == 0){
+				flag = true;
+			}
+		}
+		function over(num){
+			clearInterval(times);
+			idenx = num;
+			tu.style.top = arr[num];
+		}
+		function out(){
+			times = setInterval(fun,2000);
+		}
+	</script>
+</html>

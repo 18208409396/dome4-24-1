@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 400px;
+			height: 100px;
+			margin: auto;
+			overflow: hidden;
+			margin-top: 150px;
+			position: relative;
+			border: 1px solid gray;
+		}
+		.minbox{
+			width: 400px;
+			height: 100px;
+			left: 0px;
+			position: absolute;
+		}
+		.minbox div{
+			width: 100px;
+			height: 100px;
+			float: left;
+			font-size: 30px;
+			text-align: center;
+			color: white;
+			}
+		.btn1{
+			background: red;
+		}
+		.btn2{
+			background: green;
+		}
+		.btn3{
+			background: blue;
+		}
+		.btn4{
+			background: darkslateblue;
+		}
+		.but{
+	    width: 100px;
+	    height: 30px;
+	    float: left;
+	    margin-left: 715px;
+		}
+		</style>
+	</head>
+	<body>
+	<div class="box">
+		<div class="minbox" onmouseover="over(0)" onmouseout="out()">
+			<div class="btn1" >第一张</div>
+			<div class="btn2" >第二张</div>
+			<div class="btn3" >第三张</div>
+			<div class="btn4" >第四张</div>
+		</div>
+	</div>
+	<div class="but">
+		<button class="but1" onclick="show(0)"> 〈往左 </button>
+		<button class="but2" onclick="show(5)"> 往右〉 </button>
+		</div>
+	</body>
+	<script>
+	//获取minbox的值
+	var bb = document.getElementsByClassName("minbox")[0];
+	//复制minbox里面的内容
+	bb.innerHTML += bb.innerHTML;
+    //设置box的两倍宽度
+    bb.style.width = bb.offsetWidth*2+"px";
+	//定义一个定时器的值
+	var times;
+		var index=0;
+		var ff=true;
+		times = setInterval(fun,10);
+		function  show(num){
+			clearInterval(times);
+			if(num==0)
+			{
+				ff=true;
+				times = setInterval(fun,10);
+			}
+			else
+			{
+				times = setInterval(funrigth,10);
+			}
+		}
+		
+		function fun(){
+			bb.style.left = --index +"px";
+			if(index <= -400){
+				index=0;
+			}
+		}
+		function funrigth(){
+			bb.style.left = ++index +"px";
+			if(index >=0){
+				index=-400;
+			}
+		}
+		
+		
+		function over(){
+			clearInterval(times);
+		}
+		function out(){
+			if(ff){
+			    times = setInterval(fun,10);
+			}else{
+				times = setInterval(funrigth,10);
+			}
+		}
+	</script>
+</html>
